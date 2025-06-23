@@ -2,19 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:quickcoat/core/colors/app_colors.dart';
 import 'package:quickcoat/features/hover_extensions.dart';
-import 'package:quickcoat/features/landing/home/sections/first_section.dart';
-import 'package:quickcoat/features/landing/home/sections/fourth_section.dart';
-import 'package:quickcoat/features/landing/home/sections/second_section.dart';
-import 'package:quickcoat/features/landing/home/sections/third_section.dart';
+import 'package:quickcoat/features/landing/contact/sections/first_section.dart';
+import 'package:quickcoat/features/landing/contact/sections/second_section.dart';
+import 'package:quickcoat/features/landing/contact/sections/third_section.dart';
 
-class LandingPage extends StatefulWidget {
-  const LandingPage({super.key});
+class ContactPage extends StatefulWidget {
+  const ContactPage({super.key});
 
   @override
-  State<LandingPage> createState() => _LandingPageState();
+  State<ContactPage> createState() => _ContactPageState();
 }
 
-class _LandingPageState extends State<LandingPage> {
+class _ContactPageState extends State<ContactPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -70,28 +69,40 @@ class _LandingPageState extends State<LandingPage> {
               Row(
                 children: [
                   //Home
-                  Container(
-                    width: MediaQuery.of(context).size.width / 15.5,
-                    height: MediaQuery.of(context).size.width / 35,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(
-                        MediaQuery.of(context).size.width / 120,
-                      ),
-                    ),
-                    child: Center(
-                      child: Text(
-                        "Home",
-                        style: TextStyle(
-                          color: AppColors.color11,
-                          fontSize: MediaQuery.of(context).size.width / 90,
-                          fontFamily:
-                              GoogleFonts.inter(
-                                fontWeight: FontWeight.bold,
-                              ).fontFamily,
-                        ),
-                      ),
-                    ),
-                  ).showCursorOnHover.moveUpOnHover,
+                  GestureDetector(
+                    onTap: () {
+                      // Navigate to home page
+                      Navigator.pushNamedAndRemoveUntil(
+                        context,
+                        '/',
+                        (route) => false,
+                      );
+                    },
+                    child:
+                        Container(
+                          width: MediaQuery.of(context).size.width / 15.5,
+                          height: MediaQuery.of(context).size.width / 35,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(
+                              MediaQuery.of(context).size.width / 120,
+                            ),
+                          ),
+                          child: Center(
+                            child: Text(
+                              "Home",
+                              style: TextStyle(
+                                color: AppColors.color11,
+                                fontSize:
+                                    MediaQuery.of(context).size.width / 90,
+                                fontFamily:
+                                    GoogleFonts.inter(
+                                      fontWeight: FontWeight.bold,
+                                    ).fontFamily,
+                              ),
+                            ),
+                          ),
+                        ).showCursorOnHover.moveUpOnHover,
+                  ),
                   //Products
                   Container(
                     width: MediaQuery.of(context).size.width / 15.5,
@@ -139,40 +150,28 @@ class _LandingPageState extends State<LandingPage> {
                     ),
                   ).showCursorOnHover.moveUpOnHover,
                   //Contact Us
-                  GestureDetector(
-                    onTap: () {
-                      // Navigate to Contact Us page
-                      Navigator.pushNamedAndRemoveUntil(
-                        context,
-                        '/contact',
-                        (route) => false,
-                      );
-                    },
-                    child:
-                        Container(
-                          width: MediaQuery.of(context).size.width / 15.5,
-                          height: MediaQuery.of(context).size.width / 35,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(
-                              MediaQuery.of(context).size.width / 120,
-                            ),
-                          ),
-                          child: Center(
-                            child: Text(
-                              "Contact",
-                              style: TextStyle(
-                                color: AppColors.color11,
-                                fontSize:
-                                    MediaQuery.of(context).size.width / 90,
-                                fontFamily:
-                                    GoogleFonts.inter(
-                                      fontWeight: FontWeight.bold,
-                                    ).fontFamily,
-                              ),
-                            ),
-                          ),
-                        ).showCursorOnHover.moveUpOnHover,
-                  ),
+                  Container(
+                    width: MediaQuery.of(context).size.width / 15.5,
+                    height: MediaQuery.of(context).size.width / 35,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(
+                        MediaQuery.of(context).size.width / 120,
+                      ),
+                    ),
+                    child: Center(
+                      child: Text(
+                        "Contact",
+                        style: TextStyle(
+                          color: AppColors.color11,
+                          fontSize: MediaQuery.of(context).size.width / 90,
+                          fontFamily:
+                              GoogleFonts.inter(
+                                fontWeight: FontWeight.bold,
+                              ).fontFamily,
+                        ),
+                      ),
+                    ),
+                  ).showCursorOnHover.moveUpOnHover,
                   SizedBox(width: MediaQuery.of(context).size.width / 80),
                   //Searchbar
                   Container(
@@ -289,7 +288,6 @@ class _LandingPageState extends State<LandingPage> {
             FirstSection(),
             SecondSection(),
             ThirdSection(),
-            FourthSection(),
           ], // Assuming FourthSection is defined elsewhere,
         ),
       ),
