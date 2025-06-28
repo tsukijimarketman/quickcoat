@@ -1,17 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:quickcoat/core/colors/app_colors.dart';
+import 'package:quickcoat/features/hover_extensions.dart';
 
-class FourthSection extends StatefulWidget {
-  const FourthSection({super.key});
+class Footer extends StatefulWidget {
+  const Footer({super.key});
 
   @override
-  State<FourthSection> createState() => _FourthSectionState();
+  State<Footer> createState() => _FooterState();
 }
 
-class _FourthSectionState extends State<FourthSection> {
+class _FooterState extends State<Footer> {
   @override
   Widget build(BuildContext context) {
+    final double width = MediaQuery.of(context).size.width;
+  final double headingSize = width / 65;
+  final double fontSize = width / 90;
+  final EdgeInsets sectionPadding = EdgeInsets.symmetric(vertical: width / 300);
     return Container(
       height: MediaQuery.of(context).size.height / 2.4,
       width: MediaQuery.of(context).size.width,
@@ -78,55 +84,126 @@ class _FourthSectionState extends State<FourthSection> {
                         ),
                       ),
                       SizedBox(height: MediaQuery.of(context).size.width / 120),
-                      ...["All products", "Designs", "Size", "Colors"].map(
-                        (item) => Padding(
-                          padding: EdgeInsets.symmetric(vertical: MediaQuery.of(context).size.width / 300),
-                          child: Text(
-                            item,
-                            style: GoogleFonts.inter(
-                              fontSize: MediaQuery.of(context).size.width / 90,
-                              color: Colors.white70,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+                      ...[
+                        {
+                          'label': 'All Products',
+                          'onTap': (){
+
+                          },
+                          'hover': true
+                        },
+                        {
+                          'label': 'Designs',
+                          'onTap': (){
+
+                          },
+                          'hover': true
+                        },
+                        {
+                          'label': 'Size',
+                          'onTap': () { 
+                            
+                            },
+                          'hover': true
+                        },
+                        {
+                          'label': 'Colors',
+                          'onTap': (){
+
+                          },
+                          'hover': true
+                        },
+                        ].map((item) {
+        final String label = item['label'] as String;
+        final VoidCallback onTap = item['onTap'] as VoidCallback;
+        final bool hover = item['hover'] as bool;
+
+        Widget text = GestureDetector(
+          onTap: onTap,
+          child: Text(
+            label,
+            style: GoogleFonts.inter(
+              fontSize: fontSize,
+              color: Colors.white70,
+            ),
+          ),
+        );
+
+        return Padding(
+          padding: sectionPadding,
+          child: hover ? text.showCursorOnHover.moveUpOnHover : text,
+        );
+      }),
+    ],
+  ),
+),
                 // Third Column
                 Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "Company",
-                        style: GoogleFonts.inter(
-                          fontWeight: FontWeight.bold,
-                          fontSize: MediaQuery.of(context).size.width / 65,
-                          color: Colors.white,
-                        ),
-                      ),
-                      SizedBox(height: MediaQuery.of(context).size.width / 120),
-                      ...[
-                        "About Us",
-                        "Contact Us",
-                        "Terms & Conditions",
-                        "Privacy Policy",
-                      ].map(
-                        (item) => Padding(
-                          padding: EdgeInsets.symmetric(vertical: MediaQuery.of(context).size.width / 300),
-                          child: Text(
-                            item,
-                            style: GoogleFonts.inter(
-                              fontSize: MediaQuery.of(context).size.width / 90,
-                              color: Colors.white70,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+  child: Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      Text(
+        "Company",
+        style: GoogleFonts.inter(
+          fontWeight: FontWeight.bold,
+          fontSize: headingSize,
+          color: Colors.white,
+        ),
+      ),
+      SizedBox(height: width / 120),
+      ...[
+        {
+          'label': "About Us",
+          'onTap': () {
+
+          },
+          'hover': true,
+        },
+        {
+          'label': "Contact Us",
+          'onTap': () {
+
+          },
+          'hover': true,
+        },
+        {
+          'label': "Terms & Conditions",
+          'onTap': () {
+            Get.toNamed('/terms&condition');
+            },
+          'hover': true,
+        },
+        {
+          'label': "Privacy Policy",
+          'onTap': () {
+
+          },
+          'hover': true,
+        },
+      ].map((item) {
+        final String label = item['label'] as String;
+        final VoidCallback onTap = item['onTap'] as VoidCallback;
+        final bool hover = item['hover'] as bool;
+
+        Widget text = GestureDetector(
+          onTap: onTap,
+          child: Text(
+            label,
+            style: GoogleFonts.inter(
+              fontSize: fontSize,
+              color: Colors.white70,
+            ),
+          ),
+        );
+
+        return Padding(
+          padding: sectionPadding,
+          child: hover ? text.showCursorOnHover.moveUpOnHover : text,
+        );
+      }),
+    ],
+  ),
+),
                 // Fourth Column
                 Expanded(
                   child: Column(
